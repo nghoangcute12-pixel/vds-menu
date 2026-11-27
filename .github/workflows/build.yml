@@ -1,0 +1,40 @@
+name: Build iOS Dylib
+on: [push]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile Dylib
+        run: |
+          xcrun --sdk iphoneos clang -arch arm64 -dynamiclib \
+          -miphoneos-version-min=14.0 \
+          -fobjc-arc \
+          -framework UIKit -framework Foundation -framework QuartzCore \
+          -install_name @rpath/VDSMenu.dylib \
+          Tweak.m -o VDSMenu.dylib
+      - name: Upload Dylib
+        uses: actions/upload-artifact@v4
+        with:
+          name: VDSMenu-dylib
+          path: VDSMenu.dylib
+name: Build iOS Dylib
+on: [push]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile Dylib
+        run: |
+          xcrun --sdk iphoneos clang -arch arm64 -dynamiclib \
+          -miphoneos-version-min=14.0 \
+          -fobjc-arc \
+          -framework UIKit -framework Foundation -framework QuartzCore \
+          -install_name @rpath/VDSMenu.dylib \
+          Tweak.m -o VDSMenu.dylib
+      - name: Upload Dylib
+        uses: actions/upload-artifact@v4
+        with:
+          name: VDSMenu-dylib
+          path: VDSMenu.dylib
