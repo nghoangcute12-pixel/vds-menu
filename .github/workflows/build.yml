@@ -13,7 +13,7 @@ jobs:
           clang -arch arm64 -isysroot "$SDK_PATH" \
             -dynamiclib -fobjc-arc \
             -miphoneos-version-min=14.0 \
-            -framework UIKit -framework Foundation -framework QuartzCore \
+            -framework UIKit -framework Foundation -framework QuartzCore -framework CoreGraphics \
             -install_name @rpath/VDSMenu.dylib \
             Tweak.m -o VDSMenu.dylib
       - name: Upload Dylib
@@ -21,3 +21,4 @@ jobs:
         with:
           name: VDSMenu-dylib
           path: VDSMenu.dylib
+
